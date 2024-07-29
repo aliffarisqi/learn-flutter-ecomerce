@@ -12,8 +12,10 @@ Future<void> main() async {
   // Add Widgets Binding
   final WidgetsBinding widgetsBinding =
       WidgetsFlutterBinding.ensureInitialized();
+
   // GetX Local Storage
   await GetStorage.init();
+
   // Await Native Splash
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 

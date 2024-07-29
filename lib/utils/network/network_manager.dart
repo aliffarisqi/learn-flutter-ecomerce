@@ -24,10 +24,6 @@ class NetworkManager extends GetxController {
   ///Update the connection status based on changes in connectivity and show a relevant popup for no internet connection.
   Future<void> _updateConnectionStatus(ConnectivityResult result) async {
     _connectionStatus.value = result;
-    print("connection status");
-    print(_connectionStatus.value);
-    print("result");
-    print(result);
 
     if (_connectionStatus.value == ConnectivityResult.none) {
       BLoaders.warningSnackBar(title: 'No Internet Connection');
