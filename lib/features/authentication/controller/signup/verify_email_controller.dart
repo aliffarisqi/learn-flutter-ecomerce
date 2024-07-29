@@ -45,7 +45,8 @@ class VerifyEmailController extends GetxController {
               title: BTexts.yourAccountCreatedTitle,
               subTitle: BTexts.yourAccountCreatedSubTitle,
               image: BImages.successAnimation,
-              onPressed: () => AuthenticationRepository.instance.screenRedirect,
+              onPressed: () =>
+                  AuthenticationRepository.instance.screenRedirect(),
             ),
           );
         }
@@ -62,9 +63,13 @@ class VerifyEmailController extends GetxController {
           title: BTexts.yourAccountCreatedTitle,
           subTitle: BTexts.yourAccountCreatedSubTitle,
           image: BImages.successAnimation,
-          onPressed: () => AuthenticationRepository.instance.screenRedirect,
+          onPressed: () => AuthenticationRepository.instance.screenRedirect(),
         ),
       );
+    } else {
+      BLoaders.warningSnackBar(
+          title: "Email not actived",
+          message: "Please verify the email for activation");
     }
   }
 }
