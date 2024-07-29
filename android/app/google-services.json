@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "756372702577",
+    "project_id": "alif-ecommerce",
+    "storage_bucket": "alif-ecommerce.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:756372702577:android:1ed89eadf43e70771b22d0",
+        "android_client_info": {
+          "package_name": "com.example.alif_e_commerce"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "756372702577-nt3lpb6ohrg9jgorj4gctous854md59p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.alif_e_commerce",
+            "certificate_hash": "63da3ce78c3fb8491e1d182449c40f353cfe57c2"
+          }
+        },
+        {
+          "client_id": "756372702577-ela33durr5sf1rd5v5ro61huea1p8m47.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDoYHMTNZ9XV26SWx56yESAdVt5FcbJjGE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "756372702577-ela33durr5sf1rd5v5ro61huea1p8m47.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "756372702577-itqog4abfck3fu6l5q3ktji513trd3bb.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.alifECommerce"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

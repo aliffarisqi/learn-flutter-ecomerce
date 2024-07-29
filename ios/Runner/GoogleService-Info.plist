@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>756372702577-itqog4abfck3fu6l5q3ktji513trd3bb.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.756372702577-itqog4abfck3fu6l5q3ktji513trd3bb</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>756372702577-nt3lpb6ohrg9jgorj4gctous854md59p.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBOuSd1Txa7pS6ZeeH8NPieM9W3EtnGVHU</string>
+	<key>GCM_SENDER_ID</key>
+	<string>756372702577</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.alifECommerce</string>
+	<key>PROJECT_ID</key>
+	<string>alif-ecommerce</string>
+	<key>STORAGE_BUCKET</key>
+	<string>alif-ecommerce.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:756372702577:ios:7ec5b444a2530de21b22d0</string>
+</dict>
+</plist>

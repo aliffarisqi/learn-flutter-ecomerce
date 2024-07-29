@@ -1,0 +1,81 @@
+name: alif_e_commerce
+description: "A new Flutter project."
+
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.4.1 <4.0.0"
+
+#-------------------------PACKAGE-----------------------#
+dependencies:
+  flutter:
+    sdk: flutter
+
+  #Utility package
+  http: ^1.2.1
+  intl: ^0.19.0
+  logger: ^2.3.0
+  url_launcher: ^6.3.0
+
+  #Icons
+  cupertino_icons: ^1.0.6
+  iconsax: ^0.0.8
+
+  #State Management
+  get: ^4.6.6
+  get_storage: ^2.1.1
+  flutter_native_splash: ^2.4.0
+  smooth_page_indicator: ^1.1.0
+  carousel_slider: ^4.2.1
+  readmore: ^3.0.0
+  flutter_rating_bar: ^4.0.1
+  firebase_core: ^3.2.0
+  lottie: ^3.1.2
+  connectivity_plus: ^5.0.2
+  cloud_firestore: ^5.1.0
+  firebase_auth: ^5.1.2
+
+  #Product Specific
+
+#-------------------------PACKAGE END-----------------------#
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
+
+  #-------------------------LOCAL ASSETS-----------------------#
+  assets:
+    - assets/logos/
+    - assets/icons/brands/
+    - assets/icons/categories/
+    - assets/images/on_boarding_images/
+    - assets/images/animations/
+    - assets/images/banners/
+    - assets/images/products/
+    - assets/images/content/
+    - assets/images/reviews/
+    - assets/icons/payment_methods/
+
+  fonts:
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/Poppins-Light.ttf
+          weight: 300
+        - asset: assets/fonts/Poppins-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Poppins-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Poppins-MediumItalic.ttf
+          weight: 500
+          style: italic
+        - asset: assets/fonts/Poppins-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Poppins-Italic.ttf
+          style: italic
+        - asset: assets/fonts/Poppins-Bold.ttf
+          weight: 800
