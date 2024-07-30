@@ -60,7 +60,7 @@ class BValidator {
     final phoneRegExp = RegExp(r'^\d{12}$');
 
     if (!phoneRegExp.hasMatch(value)) {
-      return 'Invalid phone number format (10 digits required).';
+      return 'Invalid phone number format (12 digits required).';
     }
 
     return null;

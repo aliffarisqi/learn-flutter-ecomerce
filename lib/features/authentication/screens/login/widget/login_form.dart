@@ -19,7 +19,6 @@ class BLoginForm extends StatelessWidget {
     final controller = Get.put(LoginController());
     return Form(
       key: controller.loginFormKey,
-      autovalidateMode: AutovalidateMode.onUserInteraction,
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: BSizes.spaceBtwSections),
         child: Column(
@@ -28,6 +27,7 @@ class BLoginForm extends StatelessWidget {
             TextFormField(
               controller: controller.email,
               validator: (value) => BValidator.validateEmail(value),
+              autovalidateMode: AutovalidateMode.onUserInteraction,
               decoration: const InputDecoration(
                 prefixIcon: Icon(Iconsax.direct_right),
                 labelText: BTexts.email,
@@ -40,6 +40,7 @@ class BLoginForm extends StatelessWidget {
               () => TextFormField(
                 obscureText: controller.hidePassword.value,
                 controller: controller.password,
+                autovalidateMode: AutovalidateMode.onUserInteraction,
                 validator: (value) =>
                     BValidator.validationEmptyText("Password", value),
                 decoration: InputDecoration(
@@ -63,13 +64,18 @@ class BLoginForm extends StatelessWidget {
                 //remember me
                 Row(
                   children: [
-                    Obx(
-                      () => Checkbox(
-                        value: controller.rememberMe.value,
-                        onChanged: (value) => controller.rememberMe.value =
-                            !controller.rememberMe.value,
+                    SizedBox(
+                      width: 24,
+                      height: 24,
+                      child: Obx(
+                        () => Checkbox(
+                          value: controller.rememberMe.value,
+                          onChanged: (value) => controller.rememberMe.value =
+                              !controller.rememberMe.value,
+                        ),
                       ),
                     ),
+                    const SizedBox(width: BSizes.spaceBtwItems / 2),
                     const Text(BTexts.rememberMe),
                   ],
                 ),

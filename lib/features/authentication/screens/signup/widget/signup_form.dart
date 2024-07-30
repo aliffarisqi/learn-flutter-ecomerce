@@ -27,6 +27,7 @@ class BSignUpForm extends StatelessWidget {
               Expanded(
                 child: TextFormField(
                   controller: controller.firstName,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
                   validator: (value) =>
                       BValidator.validationEmptyText('First Name', value),
                   decoration: const InputDecoration(
@@ -39,6 +40,7 @@ class BSignUpForm extends StatelessWidget {
               Expanded(
                 child: TextFormField(
                   controller: controller.lastName,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
                   validator: (value) =>
                       BValidator.validationEmptyText('Last Name', value),
                   decoration: const InputDecoration(
@@ -53,6 +55,7 @@ class BSignUpForm extends StatelessWidget {
           const SizedBox(height: BSizes.spaceBtwInputFields),
           TextFormField(
             controller: controller.username,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             validator: (value) =>
                 BValidator.validationEmptyText('User Name', value),
             decoration: const InputDecoration(
@@ -64,6 +67,7 @@ class BSignUpForm extends StatelessWidget {
           const SizedBox(height: BSizes.spaceBtwInputFields),
           TextFormField(
             controller: controller.email,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             validator: (value) => BValidator.validateEmail(value),
             decoration: const InputDecoration(
                 labelText: BTexts.email, prefixIcon: Icon(Iconsax.direct)),
@@ -73,6 +77,7 @@ class BSignUpForm extends StatelessWidget {
           const SizedBox(height: BSizes.spaceBtwInputFields),
           TextFormField(
             controller: controller.phoneNumber,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             validator: (value) => BValidator.validatePhoneNumber(value),
             decoration: const InputDecoration(
                 labelText: BTexts.phoneNo, prefixIcon: Icon(Iconsax.call)),
@@ -84,6 +89,7 @@ class BSignUpForm extends StatelessWidget {
             () => TextFormField(
               obscureText: controller.hidePassword.value,
               controller: controller.password,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
               validator: (value) => BValidator.validatePassword(value),
               decoration: InputDecoration(
                 labelText: BTexts.password,
