@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 import '../../../features/authentication/screens/login/login.dart';
 import '../../../features/authentication/screens/onboarding/onboarding.dart';
@@ -104,6 +105,40 @@ class AuthenticationRepository extends GetxController {
       throw ("Something went wrong, please try again");
     }
   }
+
+  /* -------------------- GOOGLE Sign IN ---------------------*/
+
+  Future<UserCredential> loginWithGoogleAccoount() async {
+    try {
+      //trigger the authentication flow
+      final GoogleSignInAccount? userAccount = await GoogleSignIn().signIn();
+
+      //obtain the auth tails from the request
+      final GoogleSignInAuthentication? googleAuth =
+          await userAccount?.authentication;
+
+      //create new credential
+      final credentials = GoogleAuthProvider.credential(
+        accessToken: googleAuth?.accessToken,
+        idToken: googleAuth?.idToken,
+      );
+
+      //once sign in, return the user credential
+      return await _auth.signInWithCredential(credentials);
+    } on FirebaseAuthException catch (e) {
+      throw BFirebaseAuthException(e.code).message;
+    } on FirebaseException catch (e) {
+      throw BFirebaseException(e.code).message;
+    } on FormatException catch (_) {
+      throw const BFormatException();
+    } on PlatformException catch (e) {
+      throw BPlatformException(e.code).message;
+    } catch (e) {
+      throw ("Something went wrong, please try again");
+    }
+  }
+
+  /* -------------------- LOG-OUT ---------------------*/
 
   /// [LOGOUT] valid for any authentication
   Future<void> logout() async {

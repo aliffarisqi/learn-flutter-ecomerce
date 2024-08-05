@@ -1,3 +1,4 @@
+import 'package:alif_e_commerce/features/personalization/controllers/user_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -18,10 +19,11 @@ class LoginController extends GetxController {
   final hidePassword = true.obs;
 
   GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
+  final userController = Get.put(UserController());
 
   @override
   void onInit() {
-    email.text = localStorage.read("REMEMBER_ME_EMAIL");
+    email.text = localStorage.read("REMEMBER_ME_EMAIL") ?? "";
     // password.text = localStorage.read("REMEMBER_ME_PASSWORD");
     super.onInit();
   }
@@ -67,6 +69,37 @@ class LoginController extends GetxController {
 
       //show generic error to the user
       BLoaders.errorSnackBar(title: "Hmmm...", message: e.toString());
+    }
+  }
+
+  Future<void> signInWithGoogle() async {
+    try {
+      BFullScreenLoader.openLoadingDialog(
+          "Loading to sign in ...", BImages.loaderAnimation);
+      //check internet connectivity
+      final isConnected = await NetworkManager.instance.isConnected();
+      if (!isConnected) {
+        //remove loader
+        BFullScreenLoader.stopLoading();
+        BLoaders.warningSnackBar(title: 'No Internet Connection');
+        return;
+      }
+
+      //google authentication
+      final userCredentials =
+          await AuthenticationRepository.instance.loginWithGoogleAccoount();
+
+      //save user recored
+      await userController.saveUserRecord(userCredentials);
+
+      //remove loader
+      BFullScreenLoader.stopLoading();
+
+      //Redirect
+      AuthenticationRepository.instance.screenRedirect();
+    } catch (e) {
+      BFullScreenLoader.stopLoading();
+      BLoaders.errorSnackBar(title: "Sorry guys", message: e.toString());
     }
   }
 }

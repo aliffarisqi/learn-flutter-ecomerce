@@ -1,11 +1,11 @@
 import '../../../utils/formatters/formatter.dart';
 
 class UserModel {
-  final id;
+  final String id;
   String firstName;
   String lastName;
-  final username;
-  final email;
+  final String username;
+  final String email;
   String phoneNumber;
   String profilePicture;
 
