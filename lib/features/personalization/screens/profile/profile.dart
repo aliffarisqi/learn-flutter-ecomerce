@@ -1,4 +1,8 @@
+import 'package:alif_e_commerce/features/personalization/controllers/user_controller.dart';
+import 'package:alif_e_commerce/features/personalization/screens/profile/change_name.dart';
+import 'package:alif_e_commerce/features/personalization/screens/settings/settings.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../../common/widget/appbar/appbar.dart';
 import '../../../../common/widget/images/circular_image.dart';
@@ -12,10 +16,12 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = UserController.instance;
     return Scaffold(
-      appBar: const BAppBar(
+      appBar: BAppBar(
         showBackArrow: true,
-        title: Text("Profile"),
+        title: const Text("Profile"),
+        linkBack: () => Get.off(SettingScreen()),
       ),
 
       /// BODY
@@ -53,9 +59,13 @@ class ProfileScreen extends StatelessWidget {
               const SizedBox(height: BSizes.spaceBtwItems),
 
               ProfileMenu(
-                  onPressed: () {}, title: "Name", value: "Bayu Alif F"),
+                  onPressed: () => Get.to(() => const ChangeName()),
+                  title: "Name",
+                  value: controller.user.value.fullName),
               ProfileMenu(
-                  onPressed: () {}, title: "username", value: "aliffarisqi"),
+                  onPressed: () {},
+                  title: "username",
+                  value: controller.user.value.username),
 
               const SizedBox(height: BSizes.spaceBtwItems / 2),
               const Divider(),
@@ -66,13 +76,18 @@ class ProfileScreen extends StatelessWidget {
                   title: "Personal Information", showActionButton: false),
               const SizedBox(height: BSizes.spaceBtwItems),
 
-              ProfileMenu(onPressed: () {}, title: "User ID", value: "bsd762"),
+              ProfileMenu(
+                  onPressed: () {},
+                  title: "User ID",
+                  value: controller.user.value.id),
               ProfileMenu(
                   onPressed: () {},
                   title: "E-Mail",
-                  value: "bayualiev@gmail.com"),
+                  value: controller.user.value.email),
               ProfileMenu(
-                  onPressed: () {}, title: "No.HP", value: "+628982346675"),
+                  onPressed: () {},
+                  title: "No.HP",
+                  value: controller.user.value.phoneNumber),
               ProfileMenu(onPressed: () {}, title: "Gender", value: "Male"),
               ProfileMenu(
                   onPressed: () {},
@@ -84,7 +99,7 @@ class ProfileScreen extends StatelessWidget {
 
               Center(
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: () => controller.deleteAccountWarningPopup(),
                   child: const Text(
                     "Delete Account",
                     style: TextStyle(color: Colors.red),

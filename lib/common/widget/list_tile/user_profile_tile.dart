@@ -1,3 +1,4 @@
+import 'package:alif_e_commerce/features/personalization/controllers/user_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 
@@ -13,6 +14,7 @@ class BUserProfileTile extends StatelessWidget {
   final VoidCallback onPressed;
   @override
   Widget build(BuildContext context) {
+    final controller = UserController.instance;
     return ListTile(
       leading: const CircularImage(
         image: BImages.user,
@@ -21,17 +23,17 @@ class BUserProfileTile extends StatelessWidget {
         padding: 0,
       ),
       title: Text(
-        "Bayu Alif",
+        controller.user.value.fullName,
         style: Theme.of(context)
             .textTheme
             .headlineSmall!
             .apply(color: BColors.white),
       ),
-      subtitle: Text("jakartabanyu@gmail.com",
-          style: Theme.of(context)
-              .textTheme
-              .bodyMedium!
-              .apply(color: BColors.white)),
+      subtitle: Text(
+        controller.user.value.email,
+        style:
+            Theme.of(context).textTheme.bodyMedium!.apply(color: BColors.white),
+      ),
       trailing: IconButton(
         onPressed: onPressed,
         icon: const Icon(
