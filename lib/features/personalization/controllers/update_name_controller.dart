@@ -70,11 +70,13 @@ class UpdateNameController extends GetxController {
       BFullScreenLoader.stopLoading();
 
       //move to previous screen
-      // Navigator.of(Get.overlayContext!).pop();
+      Navigator.of(Get.overlayContext!).pop();
+      Get.off(const ProfileScreen());
+      //Refresh user data
+      userController.user.refresh();
       //show success message
       BLoaders.successSnackBar(
           title: "Congratulations", message: "Your Name has been updated");
-      Get.off(const ProfileScreen());
     } catch (e) {
       //remove loader
       BFullScreenLoader.stopLoading();

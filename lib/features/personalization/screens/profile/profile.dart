@@ -22,7 +22,7 @@ class ProfileScreen extends StatelessWidget {
       appBar: BAppBar(
         showBackArrow: true,
         title: const Text("Profile"),
-        linkBack: () => Get.off(const SettingScreen()),
+        // linkBack: () => Get.off(const SettingScreen()),
       ),
 
       /// BODY
@@ -68,10 +68,12 @@ class ProfileScreen extends StatelessWidget {
                   title: "Profile Information", showActionButton: false),
               const SizedBox(height: BSizes.spaceBtwItems),
 
-              ProfileMenu(
-                  onPressed: () => Get.to(() => const ChangeName()),
-                  title: "Name",
-                  value: controller.user.value.fullName),
+              Obx(
+                () => ProfileMenu(
+                    onPressed: () => Get.to(() => const ChangeName()),
+                    title: "Name",
+                    value: controller.user.value.fullName),
+              ),
               ProfileMenu(
                   onPressed: () {},
                   title: "username",
