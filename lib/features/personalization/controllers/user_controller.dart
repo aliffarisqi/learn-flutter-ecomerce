@@ -5,6 +5,7 @@ import 'package:alif_e_commerce/utils/constants/sizes.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../../../data/repositories/user/user_repository.dart';
 import '../../../utils/constants/images_strings.dart';
@@ -17,6 +18,7 @@ class UserController extends GetxController {
   static UserController get instance => Get.find();
 
   final profileLoading = false.obs;
+  final imageUploading = false.obs;
   Rx<UserModel> user = UserModel.empty().obs;
   final userRepository = Get.put(UserRepository());
 
@@ -47,26 +49,33 @@ class UserController extends GetxController {
 
   Future<void> saveUserRecord(UserCredential? userCredentials) async {
     try {
-      if (userCredentials != null) {
-        //Convert name to first and last name
-        final nameParts =
-            UserModel.nameParts(userCredentials.user!.displayName ?? "");
-        final userName =
-            UserModel.generateUsername(userCredentials.user!.displayName ?? "");
+      //first update rx user then check if user data is already stored, if not store new data
+      await fetchUserRecord();
 
-        // Map Data
-        final user = UserModel(
-          id: userCredentials.user!.uid,
-          firstName: nameParts[0],
-          lastName: nameParts.length > 1 ? nameParts.sublist(1).join(" ") : "",
-          username: userName,
-          email: userCredentials.user!.email ?? "",
-          phoneNumber: userCredentials.user!.phoneNumber ?? "",
-          profilePicture: userCredentials.user!.photoURL ?? "",
-        );
+      //if no record already stored
+      if (user.value.id.isEmpty) {
+        if (userCredentials != null) {
+          //Convert name to first and last name
+          final nameParts =
+              UserModel.nameParts(userCredentials.user!.displayName ?? "");
+          final userName = UserModel.generateUsername(
+              userCredentials.user!.displayName ?? "");
 
-        //Save user data
-        await userRepository.saveUserRecord(user);
+          // Map Data
+          final user = UserModel(
+            id: userCredentials.user!.uid,
+            firstName: nameParts[0],
+            lastName:
+                nameParts.length > 1 ? nameParts.sublist(1).join(" ") : "",
+            username: userName,
+            email: userCredentials.user!.email ?? "",
+            phoneNumber: userCredentials.user!.phoneNumber ?? "",
+            profilePicture: userCredentials.user!.photoURL ?? "",
+          );
+
+          //Save user data
+          await userRepository.saveUserRecord(user);
+        }
       }
     } catch (e) {
       BLoaders.warningSnackBar(
@@ -161,9 +170,7 @@ class UserController extends GetxController {
       }
 
       //input validate
-      print("MAsukkkk siniii aja");
       if (!reAuthFormKey.currentState!.validate()) {
-        print("MAsukkkk siniii");
         //remove loader
         BFullScreenLoader.stopLoading();
         return;
@@ -181,6 +188,38 @@ class UserController extends GetxController {
 
       //show generic error to the user
       BLoaders.errorSnackBar(title: "Hmmm...", message: e.toString());
+    }
+  }
+
+  //upload image
+  uploadUserProfilePicture() async {
+    try {
+      final image = await ImagePicker().pickImage(
+          source: ImageSource.gallery,
+          imageQuality: 70,
+          maxHeight: 512,
+          maxWidth: 512);
+      if (image != null) {
+        imageUploading.value = true;
+        final imageUrl =
+            await userRepository.uploadImage('User/Image/Profile/', image);
+
+        //update user image record
+        Map<String, dynamic> json = {'profilePicture': imageUrl};
+        await userRepository.updateSingleField(json);
+
+        user.value.profilePicture = imageUrl;
+        user.refresh();
+
+        BLoaders.successSnackBar(
+            title: "Congratulations",
+            message: "Your profile picture has been updated");
+      }
+    } catch (e) {
+      //show generic error to the user
+      BLoaders.errorSnackBar(title: "Hmmm...", message: e.toString());
+    } finally {
+      imageUploading.value = false;
     }
   }
 }

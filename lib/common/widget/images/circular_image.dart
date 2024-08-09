@@ -1,3 +1,5 @@
+import 'package:alif_e_commerce/common/widget/loaders/shimmer.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../../../utils/constants/colors.dart';
@@ -32,14 +34,32 @@ class CircularImage extends StatelessWidget {
       height: height,
       padding: EdgeInsets.all(padding),
       decoration: BoxDecoration(
-        color: backgroundColor ?? (dark ? BColors.black : BColors.white),
+          color: backgroundColor ??
+              (dark ? BColors.black : const Color.fromARGB(255, 240, 240, 240)),
+          borderRadius: BorderRadius.circular(100),
+          border: Border.all(
+              color: const Color.fromARGB(255, 236, 236, 236), width: 2.0)),
+      child: ClipRRect(
         borderRadius: BorderRadius.circular(100),
-      ),
-      child: Center(
-        child: Image(
-          fit: fit,
-          image: isNetworkImage ? NetworkImage(image) : AssetImage(image),
-          color: overlayColor,
+        child: Center(
+          child: isNetworkImage
+              ? CachedNetworkImage(
+                  fit: fit,
+                  color: overlayColor,
+                  imageUrl: image,
+                  progressIndicatorBuilder: (context, url, downloadProgress) =>
+                      const BShimmerEffect(
+                    width: 55,
+                    height: 55,
+                    radius: 55,
+                  ),
+                  errorWidget: (context, url, error) => const Icon(Icons.error),
+                )
+              : Image(
+                  fit: fit,
+                  image: AssetImage(image),
+                  color: overlayColor,
+                ),
         ),
       ),
     );

@@ -20,10 +20,11 @@ class BShimmerEffect extends StatelessWidget {
     final dark = BHelperFunctions.isDarkMode(context);
     return Shimmer.fromColors(
       baseColor: dark
-          ? const Color.fromARGB(212, 122, 122, 122)
-          : const Color.fromARGB(49, 241, 241, 241),
-      highlightColor:
-          dark ? Colors.grey[700]! : const Color.fromARGB(160, 245, 245, 245),
+          ? Color.fromARGB(211, 43, 43, 43)
+          : Color.fromARGB(48, 222, 222, 222),
+      highlightColor: dark
+          ? Color.fromARGB(255, 68, 68, 68)!
+          : Color.fromARGB(159, 248, 248, 248),
       child: Container(
         width: width,
         height: height,

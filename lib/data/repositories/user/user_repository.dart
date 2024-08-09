@@ -1,8 +1,12 @@
+import 'dart:io';
+
 import 'package:alif_e_commerce/data/repositories/authentication/authentication_repository.dart';
 import 'package:alif_e_commerce/features/authentication/models/user_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../../../utils/exceptions/firebase_exceptions.dart';
 import '../../../utils/exceptions/format_exceptions.dart';
@@ -89,6 +93,24 @@ class UserRepository extends GetxController {
   Future<void> removeUserRecord(String userid) async {
     try {
       await _db.collection("Users").doc(userid).delete();
+    } on FirebaseException catch (e) {
+      throw BFirebaseException(e.code).message;
+    } on FormatException catch (_) {
+      throw const BFormatException();
+    } on PlatformException catch (e) {
+      throw BPlatformException(e.code).message;
+    } catch (e) {
+      throw "Something went erong";
+    }
+  }
+
+  //function to upload any image
+  Future<String> uploadImage(String path, XFile image) async {
+    try {
+      final ref = FirebaseStorage.instance.ref(path).child(image.name);
+      await ref.putFile(File(image.path));
+      final url = ref.getDownloadURL();
+      return url;
     } on FirebaseException catch (e) {
       throw BFirebaseException(e.code).message;
     } on FormatException catch (_) {

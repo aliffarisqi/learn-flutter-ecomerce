@@ -1,3 +1,4 @@
+import 'package:alif_e_commerce/common/widget/loaders/shimmer.dart';
 import 'package:alif_e_commerce/features/personalization/controllers/user_controller.dart';
 import 'package:alif_e_commerce/features/personalization/screens/profile/change_name.dart';
 import 'package:alif_e_commerce/features/personalization/screens/settings/settings.dart';
@@ -21,7 +22,7 @@ class ProfileScreen extends StatelessWidget {
       appBar: BAppBar(
         showBackArrow: true,
         title: const Text("Profile"),
-        linkBack: () => Get.off(SettingScreen()),
+        linkBack: () => Get.off(const SettingScreen()),
       ),
 
       /// BODY
@@ -35,13 +36,22 @@ class ProfileScreen extends StatelessWidget {
                 width: double.infinity,
                 child: Column(
                   children: [
-                    const CircularImage(
-                      image: BImages.user,
-                      width: 80,
-                      height: 80,
-                    ),
+                    Obx(() {
+                      final networkImage = controller.user.value.profilePicture;
+                      final image =
+                          networkImage.isNotEmpty ? networkImage : BImages.user;
+                      return controller.imageUploading.value
+                          ? const BShimmerEffect(
+                              width: 80, height: 80, radius: 100)
+                          : CircularImage(
+                              image: image,
+                              width: 80,
+                              height: 80,
+                              isNetworkImage: networkImage.isNotEmpty,
+                            );
+                    }),
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () => controller.uploadUserProfilePicture(),
                       child: const Text("Change Profile Picture"),
                     )
                   ],
