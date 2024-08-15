@@ -1,10 +1,9 @@
-import 'package:alif_e_commerce/common/widget/images/circular_image.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 import '../../../utils/constants/colors.dart';
 import '../../../utils/constants/sizes.dart';
 import '../../../utils/helper/helper_functions.dart';
+import '../images/circular_image.dart';
 
 class BVerticalImageText extends StatelessWidget {
   const BVerticalImageText({
@@ -24,7 +23,6 @@ class BVerticalImageText extends StatelessWidget {
   final void Function()? onTap;
   @override
   Widget build(BuildContext context) {
-    final dark = BHelperFunctions.isDarkMode(context);
     return GestureDetector(
       onTap: onTap,
       child: Padding(

@@ -1,11 +1,10 @@
-import 'package:alif_e_commerce/common/widget/shimmer/shimmer.dart';
-import 'package:alif_e_commerce/utils/constants/images_strings.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../../../utils/constants/colors.dart';
 import '../../../utils/constants/sizes.dart';
 import '../../../utils/helper/helper_functions.dart';
+import '../shimmer/shimmer.dart';
 
 class CircularImage extends StatelessWidget {
   const CircularImage({
