@@ -1,4 +1,4 @@
-import 'package:alif_e_commerce/common/widget/loaders/shimmer.dart';
+import 'package:alif_e_commerce/common/widget/shimmer/shimmer.dart';
 import 'package:alif_e_commerce/features/personalization/controllers/user_controller.dart';
 import 'package:alif_e_commerce/features/personalization/screens/profile/change_name.dart';
 import 'package:flutter/material.dart';

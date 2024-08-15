@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../../common/widget/appbar/appbar.dart';
-import '../../../../../common/widget/loaders/shimmer.dart';
+import '../../../../../common/widget/shimmer/shimmer.dart';
 import '../../../../../common/widget/product/cart/cart_menu_icon.dart';
 import '../../../../../utils/constants/colors.dart';
 import '../../../../../utils/constants/text_string.dart';

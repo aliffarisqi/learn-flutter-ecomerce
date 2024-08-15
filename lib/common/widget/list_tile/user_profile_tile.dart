@@ -6,7 +6,7 @@ import 'package:iconsax/iconsax.dart';
 import '../../../utils/constants/colors.dart';
 import '../../../utils/constants/images_strings.dart';
 import '../images/circular_image.dart';
-import '../loaders/shimmer.dart';
+import '../shimmer/shimmer.dart';
 
 class BUserProfileTile extends StatelessWidget {
   const BUserProfileTile({

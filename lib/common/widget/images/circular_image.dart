@@ -1,4 +1,5 @@
-import 'package:alif_e_commerce/common/widget/loaders/shimmer.dart';
+import 'package:alif_e_commerce/common/widget/shimmer/shimmer.dart';
+import 'package:alif_e_commerce/utils/constants/images_strings.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
