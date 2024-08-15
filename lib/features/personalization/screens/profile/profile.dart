@@ -18,10 +18,9 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = UserController.instance;
     return Scaffold(
-      appBar: BAppBar(
+      appBar: const BAppBar(
         showBackArrow: true,
-        title: const Text("Profile"),
-        // linkBack: () => Get.off(const SettingScreen()),
+        title: Text("Profile"),
       ),
 
       /// BODY
