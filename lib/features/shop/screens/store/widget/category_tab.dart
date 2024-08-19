@@ -2,6 +2,7 @@ import 'package:alif_e_commerce/common/widget/layout/grid_layout.dart';
 import 'package:alif_e_commerce/common/widget/product/product_cards/vertical_cards.dart';
 import 'package:alif_e_commerce/common/widget/text/section_heading.dart';
 import 'package:alif_e_commerce/features/shop/models/category_model.dart';
+import 'package:alif_e_commerce/features/shop/models/product_model.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../common/widget/brands/brand_showcase.dart';
@@ -27,7 +28,7 @@ class CategoryTab extends StatelessWidget {
             /// PRODUCT
             BSectionHeading(title: 'You might like', showActionButton: true, onPressed: () {}),
             const SizedBox(height: BSizes.spaceBtwItems),
-            GridLayout(itemCount: 15, itemBuilder: (_, index) => const ProductCardVertical())
+            GridLayout(itemCount: 15, itemBuilder: (_, index) => ProductCardVertical(product: ProductModel.empty()))
           ],
         ),
       ),

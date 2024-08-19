@@ -85,7 +85,7 @@ class HomeScreen extends StatelessWidget {
                     }
                     return GridLayout(
                         itemCount: controller.featuredProducts.length,
-                        itemBuilder: (_, index) => const ProductCardVertical());
+                        itemBuilder: (_, index) => ProductCardVertical(product: controller.featuredProducts[index]));
                   })
                 ],
               ),
