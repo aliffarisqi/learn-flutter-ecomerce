@@ -56,7 +56,7 @@ class ProductModel {
       'SalePrice': salePrice,
       'IsFeatured': isFeatured,
       'CategoryId': categoryId,
-      'Brand': brand!.toJson,
+      'Brand': brand?.toJson,
       'Description': description,
       'ProductType': productType,
       'ProductAttributes': productAttributes != null ? productAttributes!.map((e) => e.toJson()).toList() : [],
@@ -67,6 +67,7 @@ class ProductModel {
   //map json oriented document snapshot from firebase to model
   factory ProductModel.fromSnapshot(DocumentSnapshot<Map<String, dynamic>> document) {
     final data = document.data()!;
+    if (document.data() == null) return ProductModel.empty();
     return ProductModel(
       id: document.id,
       sku: data['SKU'],

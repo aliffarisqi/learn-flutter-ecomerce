@@ -1,5 +1,7 @@
 import 'package:alif_e_commerce/common/widget/layout/grid_layout.dart';
 import 'package:alif_e_commerce/common/widget/product/product_cards/vertical_cards.dart';
+import 'package:alif_e_commerce/common/widget/shimmer/vertical_product_shimmer.dart';
+import 'package:alif_e_commerce/features/shop/controllers/product_controller.dart';
 import 'package:alif_e_commerce/features/shop/screens/all_product/all_product.dart';
 import 'package:alif_e_commerce/utils/constants/colors.dart';
 import 'package:alif_e_commerce/utils/constants/sizes.dart';
@@ -18,6 +20,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(ProductController());
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -74,7 +77,16 @@ class HomeScreen extends StatelessWidget {
                   const SizedBox(height: BSizes.spaceBtwItems),
 
                   // POPULAR PRODUCT
-                  GridLayout(itemCount: 4, itemBuilder: (_, index) => const ProductCardVertical())
+
+                  Obx(() {
+                    if (controller.isLoading.value) return const BVerticalProductShimmer();
+                    if (controller.featuredProducts.isEmpty) {
+                      return Center(child: Text("No Data Found", style: Theme.of(context).textTheme.bodyMedium));
+                    }
+                    return GridLayout(
+                        itemCount: controller.featuredProducts.length,
+                        itemBuilder: (_, index) => const ProductCardVertical());
+                  })
                 ],
               ),
             )
