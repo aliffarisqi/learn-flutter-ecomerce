@@ -22,12 +22,9 @@ class NavigationMenu extends StatelessWidget {
         () => NavigationBar(
           elevation: 0,
           selectedIndex: controller.selectedIndex.value,
-          onDestinationSelected: (index) =>
-              controller.selectedIndex.value = index,
+          onDestinationSelected: (index) => controller.selectedIndex.value = index,
           backgroundColor: darkMode ? BColors.black : BColors.white,
-          indicatorColor: darkMode
-              ? BColors.white.withOpacity(0.1)
-              : BColors.black.withOpacity(0.1),
+          indicatorColor: darkMode ? BColors.white.withOpacity(0.1) : BColors.black.withOpacity(0.1),
           destinations: const [
             NavigationDestination(icon: Icon(Iconsax.home), label: 'Home'),
             NavigationDestination(icon: Icon(Iconsax.shop), label: 'Store'),
@@ -46,7 +43,7 @@ class NavigationConstroller extends GetxController {
 
   final screen = [
     const HomeScreen(),
-    const ScreenStore(),
+    const StoreScreen(),
     const FavoriteScreen(),
     const SettingScreen(),
   ];

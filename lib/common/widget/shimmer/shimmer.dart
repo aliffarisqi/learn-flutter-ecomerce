@@ -19,18 +19,13 @@ class BShimmerEffect extends StatelessWidget {
   Widget build(BuildContext context) {
     final dark = BHelperFunctions.isDarkMode(context);
     return Shimmer.fromColors(
-      baseColor: dark
-          ? const Color.fromARGB(211, 43, 43, 43)
-          : const Color.fromARGB(48, 222, 222, 222),
-      highlightColor: dark
-          ? const Color.fromARGB(255, 68, 68, 68)
-          : const Color.fromARGB(159, 248, 248, 248),
+      baseColor: dark ? const Color.fromARGB(211, 43, 43, 43) : const Color.fromARGB(47, 199, 199, 199),
+      highlightColor: dark ? const Color.fromARGB(255, 70, 70, 70) : const Color.fromARGB(159, 255, 255, 255),
       child: Container(
         width: width,
         height: height,
         decoration: BoxDecoration(
-          color: color ??
-              (dark ? const Color.fromARGB(255, 129, 129, 129) : BColors.white),
+          color: color ?? (dark ? const Color.fromARGB(255, 129, 129, 129) : BColors.white),
           borderRadius: BorderRadius.circular(radius),
         ),
       ),

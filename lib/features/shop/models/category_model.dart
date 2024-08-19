@@ -16,8 +16,7 @@ class CategoryModel {
   });
 
   //Empty helper function
-  static CategoryModel empty() =>
-      CategoryModel(id: '', name: '', image: '', isFeatured: false);
+  static CategoryModel empty() => CategoryModel(id: '', name: '', image: '', isFeatured: false);
 
   //convert model to json structure so that you can store data to firestore
   Map<String, dynamic> toJson() {
@@ -30,8 +29,7 @@ class CategoryModel {
   }
 
   //map json oriented document snapshot from firebase to snapshot
-  factory CategoryModel.fromSnapshot(
-      DocumentSnapshot<Map<String, dynamic>> document) {
+  factory CategoryModel.fromSnapshot(DocumentSnapshot<Map<String, dynamic>> document) {
     if (document.data() != null) {
       final data = document.data()!;
 

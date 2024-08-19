@@ -2,7 +2,6 @@ import 'package:alif_e_commerce/common/widget/layout/grid_layout.dart';
 import 'package:alif_e_commerce/common/widget/product/product_cards/vertical_cards.dart';
 import 'package:alif_e_commerce/features/shop/screens/all_product/all_product.dart';
 import 'package:alif_e_commerce/utils/constants/colors.dart';
-import 'package:alif_e_commerce/utils/constants/images_strings.dart';
 import 'package:alif_e_commerce/utils/constants/sizes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -60,19 +59,11 @@ class HomeScreen extends StatelessWidget {
 
             /// Body
             Padding(
-              padding: const EdgeInsets.symmetric(
-                  horizontal: BSizes.defaultSpace,
-                  vertical: BSizes.defaultSpace / 2),
+              padding: const EdgeInsets.symmetric(horizontal: BSizes.defaultSpace, vertical: BSizes.defaultSpace / 2),
               child: Column(
                 children: [
                   // PROMO SLIDER
-                  const PromoSlider(
-                    banners: [
-                      BImages.banner2,
-                      BImages.banner7,
-                      BImages.banner4,
-                    ],
-                  ),
+                  const PromoSlider(),
                   const SizedBox(height: BSizes.spaceBtwSections),
 
                   // SECTION HEADING
@@ -83,9 +74,7 @@ class HomeScreen extends StatelessWidget {
                   const SizedBox(height: BSizes.spaceBtwItems),
 
                   // POPULAR PRODUCT
-                  GridLayout(
-                      itemCount: 4,
-                      itemBuilder: (_, index) => const ProductCardVertical())
+                  GridLayout(itemCount: 4, itemBuilder: (_, index) => const ProductCardVertical())
                 ],
               ),
             )

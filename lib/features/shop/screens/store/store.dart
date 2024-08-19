@@ -15,8 +15,8 @@ import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/sizes.dart';
 import '../../../../utils/helper/helper_functions.dart';
 
-class ScreenStore extends StatelessWidget {
-  const ScreenStore({super.key});
+class StoreScreen extends StatelessWidget {
+  const StoreScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -2,6 +2,9 @@ import 'package:alif_e_commerce/features/shop/models/category_model.dart';
 import 'package:alif_e_commerce/utils/constants/images_strings.dart';
 
 class BDummyData {
+  //BANNERS
+
+  //CATEGORY
   static final List<CategoryModel> categories = [
     CategoryModel(id: '1', image: BImages.sportIcon, name: 'Sports', isFeatured: true),
     CategoryModel(id: '5', image: BImages.furnitureIcon, name: 'Furniture', isFeatured: true),
