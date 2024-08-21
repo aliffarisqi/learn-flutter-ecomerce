@@ -3,7 +3,7 @@ import 'package:alif_e_commerce/features/shop/models/product_model.dart';
 import 'package:alif_e_commerce/utils/popups/loaders.dart';
 import 'package:get/get.dart';
 
-import '../../../utils/constants/enum.dart';
+import '../../../../utils/constants/enum.dart';
 
 class ProductController extends GetxController {
   static ProductController get instance => Get.find();

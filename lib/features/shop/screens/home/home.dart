@@ -1,7 +1,7 @@
 import 'package:alif_e_commerce/common/widget/layout/grid_layout.dart';
 import 'package:alif_e_commerce/common/widget/product/product_cards/vertical_cards.dart';
 import 'package:alif_e_commerce/common/widget/shimmer/vertical_product_shimmer.dart';
-import 'package:alif_e_commerce/features/shop/controllers/product_controller.dart';
+import 'package:alif_e_commerce/features/shop/controllers/product/product_controller.dart';
 import 'package:alif_e_commerce/features/shop/screens/all_product/all_product.dart';
 import 'package:alif_e_commerce/utils/constants/colors.dart';
 import 'package:alif_e_commerce/utils/constants/sizes.dart';

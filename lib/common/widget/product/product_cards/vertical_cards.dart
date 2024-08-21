@@ -1,4 +1,4 @@
-import 'package:alif_e_commerce/features/shop/controllers/product_controller.dart';
+import 'package:alif_e_commerce/features/shop/controllers/product/product_controller.dart';
 import 'package:alif_e_commerce/features/shop/models/product_model.dart';
 import 'package:alif_e_commerce/utils/constants/enum.dart';
 import 'package:flutter/material.dart';
@@ -40,7 +40,8 @@ class ProductCardVertical extends StatelessWidget {
           children: [
             // Thumbnail
             BRoundedContainer(
-              height: 140,
+              height: 180,
+              width: 180,
               padding: const EdgeInsets.all(BSizes.sm),
               backgroundColor: dark ? BColors.dark : BColors.light,
               child: Stack(

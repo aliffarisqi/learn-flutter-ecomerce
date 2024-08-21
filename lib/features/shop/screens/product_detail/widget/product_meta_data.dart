@@ -27,14 +27,10 @@ class ProductMetaData extends StatelessWidget {
             BRoundedContainer(
               radius: BSizes.sm,
               backgroundColor: BColors.secondary.withOpacity(0.8),
-              padding: const EdgeInsets.symmetric(
-                  horizontal: BSizes.sm, vertical: BSizes.xs),
+              padding: const EdgeInsets.symmetric(horizontal: BSizes.sm, vertical: BSizes.xs),
               child: Text(
                 "25%",
-                style: Theme.of(context)
-                    .textTheme
-                    .labelLarge!
-                    .apply(color: BColors.black),
+                style: Theme.of(context).textTheme.labelLarge!.apply(color: BColors.black),
               ),
             ),
             const SizedBox(width: BSizes.spaceBtwItems),
@@ -42,10 +38,7 @@ class ProductMetaData extends StatelessWidget {
             // Price
             Text(
               "\$250",
-              style: Theme.of(context)
-                  .textTheme
-                  .titleSmall!
-                  .apply(decoration: TextDecoration.lineThrough),
+              style: Theme.of(context).textTheme.titleSmall!.apply(decoration: TextDecoration.lineThrough),
             ),
             const SizedBox(width: BSizes.spaceBtwItems),
             const ProductPrice(price: '175', isLarge: true),
@@ -76,12 +69,14 @@ class ProductMetaData extends StatelessWidget {
               height: 32,
               overlayColor: dark ? BColors.white : BColors.black,
             ),
+            const SizedBox(width: BSizes.spaceBtwItems / 1.5),
             const BrandTitleTextVerification(
               title: "Nike",
               brandTextSize: TextSizes.medium,
             ),
           ],
-        )
+        ),
+        const SizedBox(height: BSizes.spaceBtwItems),
       ],
     );
   }
