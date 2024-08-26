@@ -89,8 +89,8 @@ class ProductCardVertical extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 //Price
-                Flexible(
-                  child: Column(
+                Expanded(
+                  child: Row(
                     children: [
                       if (product.productType == ProductType.single.toString() && product.salePrice > 0)
                         Padding(
@@ -100,9 +100,11 @@ class ProductCardVertical extends StatelessWidget {
                               style:
                                   Theme.of(context).textTheme.labelSmall!.apply(decoration: TextDecoration.lineThrough),
                             )),
-                      Padding(
-                        padding: const EdgeInsets.only(left: BSizes.sm),
-                        child: ProductPrice(price: controller.getProductPrice(product), isLarge: false),
+                      Flexible(
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: BSizes.sm),
+                          child: ProductPrice(price: controller.getProductPrice(product), isLarge: false),
+                        ),
                       ),
                     ],
                   ),

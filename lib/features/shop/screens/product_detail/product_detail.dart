@@ -1,6 +1,7 @@
 import 'package:alif_e_commerce/common/widget/text/section_heading.dart';
 import 'package:alif_e_commerce/features/shop/models/product_model.dart';
 import 'package:alif_e_commerce/features/shop/screens/product_reviews/product_reviews.dart';
+import 'package:alif_e_commerce/utils/constants/enum.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
@@ -39,11 +40,12 @@ class ProductDetail extends StatelessWidget {
                   const RatingAndShare(),
 
                   ///-- Price, title, stock, brand
-                  const ProductMetaData(),
+                  ProductMetaData(product: product),
 
                   ///-- Attribute
-                  const ProductAttributes(),
-                  const SizedBox(height: BSizes.spaceBtwSections),
+                  if (product.productType == ProductType.variable.toString()) ProductAttributes(product: product),
+                  if (product.productType == ProductType.variable.toString())
+                    const SizedBox(height: BSizes.spaceBtwSections),
 
                   ///-- checkout button
                   SizedBox(
@@ -55,14 +57,14 @@ class ProductDetail extends StatelessWidget {
                   ///-- Description
                   const BSectionHeading(title: "Description", showActionButton: false),
                   const SizedBox(height: BSizes.spaceBtwItems),
-                  const ReadMoreText(
-                    "These shoes offer superior comfort and support, perfect for athletes and casual wearers alike. Featuring breathable materials, durable construction, and a sleek aesthetic, Nike shoes provide excellent traction and stability for any activity. Whether you're hitting the gym, going for a run, or just stepping out for the day, Nike shoes deliver unmatched quality and timeless appeal, ensuring you look and feel your best.",
+                  ReadMoreText(
+                    product.description ?? "",
                     trimLines: 2,
                     trimMode: TrimMode.Line,
                     trimCollapsedText: "See More",
                     trimExpandedText: "Less",
-                    moreStyle: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
-                    lessStyle: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+                    moreStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+                    lessStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
                   ),
                   const SizedBox(height: BSizes.spaceBtwSections),
 
