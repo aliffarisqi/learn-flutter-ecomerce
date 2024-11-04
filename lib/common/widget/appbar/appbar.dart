@@ -7,20 +7,21 @@ import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
 class BAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const BAppBar({
-    super.key,
-    this.title,
-    this.showBackArrow = false,
-    this.leadingIcon,
-    this.action,
-    this.leadingOnPressed,
-  });
+  const BAppBar(
+      {super.key,
+      this.title,
+      this.showBackArrow = false,
+      this.leadingIcon,
+      this.action,
+      this.leadingOnPressed,
+      this.linkBack});
 
   final Widget? title;
   final bool showBackArrow;
   final IconData? leadingIcon;
   final List<Widget>? action;
   final VoidCallback? leadingOnPressed;
+  final VoidCallback? linkBack;
   @override
   Widget build(BuildContext context) {
     final bool dark = BHelperFunctions.isDarkMode(context);
@@ -30,7 +31,7 @@ class BAppBar extends StatelessWidget implements PreferredSizeWidget {
         automaticallyImplyLeading: false,
         leading: showBackArrow
             ? IconButton(
-                onPressed: () => Get.back(),
+                onPressed: linkBack ?? () => Get.back(),
                 icon: Icon(Iconsax.arrow_left,
                     color: dark ? BColors.white : BColors.black))
             : leadingIcon != null

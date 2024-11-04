@@ -1,8 +1,9 @@
 import 'package:alif_e_commerce/common/widget/layout/grid_layout.dart';
 import 'package:alif_e_commerce/common/widget/product/product_cards/vertical_cards.dart';
+import 'package:alif_e_commerce/common/widget/shimmer/vertical_product_shimmer.dart';
+import 'package:alif_e_commerce/features/shop/controllers/product/product_controller.dart';
 import 'package:alif_e_commerce/features/shop/screens/all_product/all_product.dart';
 import 'package:alif_e_commerce/utils/constants/colors.dart';
-import 'package:alif_e_commerce/utils/constants/images_strings.dart';
 import 'package:alif_e_commerce/utils/constants/sizes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -19,6 +20,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(ProductController());
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -60,19 +62,11 @@ class HomeScreen extends StatelessWidget {
 
             /// Body
             Padding(
-              padding: const EdgeInsets.symmetric(
-                  horizontal: BSizes.defaultSpace,
-                  vertical: BSizes.defaultSpace / 2),
+              padding: const EdgeInsets.symmetric(horizontal: BSizes.defaultSpace, vertical: BSizes.defaultSpace / 2),
               child: Column(
                 children: [
                   // PROMO SLIDER
-                  const PromoSlider(
-                    banners: [
-                      BImages.banner2,
-                      BImages.banner7,
-                      BImages.banner4,
-                    ],
-                  ),
+                  const PromoSlider(),
                   const SizedBox(height: BSizes.spaceBtwSections),
 
                   // SECTION HEADING
@@ -83,9 +77,16 @@ class HomeScreen extends StatelessWidget {
                   const SizedBox(height: BSizes.spaceBtwItems),
 
                   // POPULAR PRODUCT
-                  GridLayout(
-                      itemCount: 4,
-                      itemBuilder: (_, index) => const ProductCardVertical())
+
+                  Obx(() {
+                    if (controller.isLoading.value) return const BVerticalProductShimmer();
+                    if (controller.featuredProducts.isEmpty) {
+                      return Center(child: Text("No Data Found", style: Theme.of(context).textTheme.bodyMedium));
+                    }
+                    return GridLayout(
+                        itemCount: controller.featuredProducts.length,
+                        itemBuilder: (_, index) => ProductCardVertical(product: controller.featuredProducts[index]));
+                  })
                 ],
               ),
             )

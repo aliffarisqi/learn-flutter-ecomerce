@@ -42,7 +42,7 @@ class BrandTitleTextVerification extends StatelessWidget {
         Icon(
           Iconsax.verify5,
           color: iconColor,
-          size: BSizes.iconXs,
+          size: BSizes.iconMd / 1.2,
         )
       ],
     );

@@ -1,5 +1,6 @@
 import 'package:alif_e_commerce/common/widget/appbar/appbar.dart';
 import 'package:alif_e_commerce/common/widget/icons/circular_icon.dart';
+import 'package:alif_e_commerce/features/shop/models/product_model.dart';
 import 'package:alif_e_commerce/features/shop/screens/home/home.dart';
 import 'package:alif_e_commerce/utils/constants/sizes.dart';
 import 'package:flutter/material.dart';
@@ -36,7 +37,7 @@ class FavoriteScreen extends StatelessWidget {
             children: [
               GridLayout(
                 itemCount: 15,
-                itemBuilder: (_, index) => const ProductCardVertical(),
+                itemBuilder: (_, index) => ProductCardVertical(product: ProductModel.empty()),
               )
             ],
           ),

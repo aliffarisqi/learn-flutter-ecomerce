@@ -1,5 +1,6 @@
 import 'package:alif_e_commerce/common/widget/appbar/tabbar.dart';
 import 'package:alif_e_commerce/common/widget/layout/grid_layout.dart';
+import 'package:alif_e_commerce/features/shop/controllers/category_controller.dart';
 import 'package:alif_e_commerce/features/shop/screens/brands/all_brands.dart';
 import 'package:alif_e_commerce/features/shop/screens/store/widget/category_tab.dart';
 import 'package:flutter/material.dart';
@@ -14,14 +15,15 @@ import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/sizes.dart';
 import '../../../../utils/helper/helper_functions.dart';
 
-class ScreenStore extends StatelessWidget {
-  const ScreenStore({super.key});
+class StoreScreen extends StatelessWidget {
+  const StoreScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     final dark = BHelperFunctions.isDarkMode(context);
+    final categories = CategoryController.instance.featuredCategories;
     return DefaultTabController(
-      length: 5,
+      length: categories.length,
       child: Scaffold(
         appBar: BAppBar(
           title: Text(
@@ -29,9 +31,7 @@ class ScreenStore extends StatelessWidget {
             style: Theme.of(context).textTheme.headlineMedium,
           ),
           action: [
-            BCartCounterIcon(
-                iconColor: dark ? BColors.white : BColors.black,
-                onPressed: () {}),
+            BCartCounterIcon(iconColor: dark ? BColors.white : BColors.black, onPressed: () {}),
           ],
         ),
         body: NestedScrollView(
@@ -41,9 +41,7 @@ class ScreenStore extends StatelessWidget {
                 automaticallyImplyLeading: false,
                 pinned: true,
                 floating: true,
-                backgroundColor: BHelperFunctions.isDarkMode(context)
-                    ? BColors.black
-                    : BColors.white,
+                backgroundColor: BHelperFunctions.isDarkMode(context) ? BColors.black : BColors.white,
                 expandedHeight: 380,
                 flexibleSpace: Padding(
                   padding: const EdgeInsets.all(BSizes.defaultSpace),
@@ -83,27 +81,15 @@ class ScreenStore extends StatelessWidget {
                 ),
 
                 /// TABS BAR
-                bottom: const BTabBar(
-                  tabs: [
-                    Tab(child: Text("Sport")),
-                    Tab(child: Text("Furniture")),
-                    Tab(child: Text("Electronic")),
-                    Tab(child: Text("CLothes")),
-                    Tab(child: Text("Cosmetic")),
-                  ],
+                bottom: BTabBar(
+                  tabs: categories.map((category) => Tab(child: Text(category.name))).toList(),
                 ),
               ),
             ];
           },
 
           /// BODY
-          body: const TabBarView(children: [
-            CategoryTab(),
-            CategoryTab(),
-            CategoryTab(),
-            CategoryTab(),
-            CategoryTab(),
-          ]),
+          body: TabBarView(children: categories.map((category) => CategoryTab(category: category)).toList()),
         ),
       ),
     );

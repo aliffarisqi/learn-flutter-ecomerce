@@ -1,3 +1,4 @@
+import 'package:alif_e_commerce/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 
@@ -18,6 +19,7 @@ class App extends StatelessWidget {
       darkTheme: BAppTheme.darkTheme,
       debugShowCheckedModeBanner: false,
       initialBinding: GeneralBindings(),
+      getPages: AppRoutes.pages,
       home: const Scaffold(
         backgroundColor: BColors.primary,
         body: Center(

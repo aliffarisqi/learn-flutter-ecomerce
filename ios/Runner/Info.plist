@@ -63,5 +63,20 @@
         <string>location</string>
         <string>voip</string>
     </array>
+    <!-- Google Sign-in Section -->
+    <key>CFBundleURLTypes</key> 
+    <array> 
+      <dict> 
+        <key>CFBundleTypeRole</key> 
+        <string>Editor</string> 
+        <key>CFBundleURLSchemes</key> 
+          <array> 
+    <!-- TODO Replace this value: -->
+    <!-- Copied from GoogleService-Info.plist key REVERSED_CLIENT_ID -->
+    <string>com.googleusercontent.apps.756372702577-itqog4abfck3fu6l5q3ktji513trd3bb</string>
+    </array> 
+    </dict> 
+    </array> 
+    <!-- End of the Google Sign-in Section -->
 	</dict>
 </plist>

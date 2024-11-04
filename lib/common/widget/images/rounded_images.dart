@@ -1,3 +1,5 @@
+import 'package:alif_e_commerce/common/widget/shimmer/shimmer.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../../../utils/constants/sizes.dart';
@@ -43,15 +45,21 @@ class BRoundedImage extends StatelessWidget {
           borderRadius: BorderRadius.circular(borderRadius),
         ),
         child: ClipRRect(
-          borderRadius: applyImageRadius
-              ? BorderRadius.circular(borderRadius)
-              : BorderRadius.zero,
-          child: Image(
-            image: isNetworkImage
-                ? NetworkImage(imageUrl)
-                : AssetImage(imageUrl) as ImageProvider,
-            fit: fit,
-          ),
+          borderRadius: applyImageRadius ? BorderRadius.circular(borderRadius) : BorderRadius.zero,
+          child: isNetworkImage
+              ? CachedNetworkImage(
+                  fit: fit,
+                  imageUrl: imageUrl,
+                  progressIndicatorBuilder: (context, url, downloadProgress) => BShimmerEffect(
+                    width: width ?? double.infinity,
+                    height: height ?? 158,
+                  ),
+                  errorWidget: (context, url, error) => const Icon(Icons.error),
+                )
+              : Image(
+                  fit: fit,
+                  image: AssetImage(imageUrl),
+                ),
         ),
       ),
     );
